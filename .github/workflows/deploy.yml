@@ -6,24 +6,33 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install & Build
+      - name: Install & Build (CI)
         run: |
-          npm install
+          npm ci
           NEXT_DISABLE_TURBOPACK=1 npm run build
 
-      - name: Deploy to EC2
+      - name: Copy build to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: ".next,public,package.json,package-lock.json,next.config.ts"
+          target: "/home/ec2-user/tamar-next"
+
+      - name: Restart app on EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -31,8 +40,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ec2-user/tamar-next
-            git pull origin main
-            npm install
-            NEXT_DISABLE_TURBOPACK=1 npm run build
+            npm install --omit=dev
             pm2 restart tamar-next --update-env || pm2 start npm --name "tamar-next" -- run start
             pm2 save
