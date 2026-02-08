@@ -39,26 +39,26 @@ export default function Industries() {
                 <div className="container my-10">
                     <div className="industries-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
-                            { title: "Finance", desc: "Secure and compliant financial technology solutions for banking, insurance, and fintech companies.", icon: "💰" },
-                            { title: "Healthcare", desc: "HIPAA-compliant healthcare IT solutions including EMR, telemedicine, and patient management systems.", icon: "🏥" },
-                            { title: "Infrastructure & Construction", desc: "Project management and resource optimization solutions for construction and infrastructure projects.", icon: "🏗️" },
-                            { title: "Automobile", desc: "Connected vehicle solutions, fleet management, and automotive software development.", icon: "🚗" },
-                            { title: "Hospitality", desc: "Hotel management systems, booking platforms, and customer experience solutions.", icon: "🏨" },
-                            { title: "Media and Entertainment", desc: "Content management, streaming platforms, and digital media solutions.", icon: "🎬" },
-                            { title: "Retail", desc: "E-commerce platforms, inventory management, and omnichannel retail solutions.", icon: "🛒" },
-                            { title: "Telecommunication", desc: "Network management, billing systems, and customer service platforms.", icon: "📡" },
-                            { title: "Education", desc: "Learning management systems, e-learning platforms, and educational technology solutions.", icon: "🎓" },
-                            { title: "Government", desc: "Citizen services, e-governance solutions, and public sector digital transformation.", icon: "🏛️" },
-                            { title: "Manufacturing", desc: "Industry 4.0 solutions, supply chain management, and production optimization.", icon: "🏭" },
-                            { title: "Energy & Utilities", desc: "Smart grid solutions, energy management systems, and utility billing platforms.", icon: "⚡" },
+                            { title: "Finance", desc: "Secure and compliant financial technology solutions for banking, insurance, and fintech companies.", icon: "💰", slug: "finance" },
+                            { title: "Healthcare", desc: "HIPAA-compliant healthcare IT solutions including EMR, telemedicine, and patient management systems.", icon: "🏥", slug: "healthcare" },
+                            { title: "Infrastructure & Construction", desc: "Project management and resource optimization solutions for construction and infrastructure projects.", icon: "🏗️", slug: "infrastructure" },
+                            { title: "Automobile", desc: "Connected vehicle solutions, fleet management, and automotive software development.", icon: "🚗", slug: "automobile" },
+                            { title: "Hospitality", desc: "Hotel management systems, booking platforms, and customer experience solutions.", icon: "🏨", slug: "hospitality" },
+                            { title: "Media and Entertainment", desc: "Content management, streaming platforms, and digital media solutions.", icon: "🎬", slug: "media-entertainment" },
+                            { title: "Retail", desc: "E-commerce platforms, inventory management, and omnichannel retail solutions.", icon: "🛒", slug: "retail" },
+                            { title: "Telecommunication", desc: "Network management, billing systems, and customer service platforms.", icon: "📡", slug: "telecommunication" },
+                            { title: "Education", desc: "Learning management systems, e-learning platforms, and educational technology solutions.", icon: "🎓", slug: "education" },
+                            { title: "Government", desc: "Citizen services, e-governance solutions, and public sector digital transformation.", icon: "🏛️", slug: "government" },
+                            { title: "Manufacturing", desc: "Industry 4.0 solutions, supply chain management, and production optimization.", icon: "🏭", slug: "manufacturing" },
+                            { title: "Energy & Utilities", desc: "Smart grid solutions, energy management systems, and utility billing platforms.", icon: "⚡", slug: "energy-utilities" },
                         ].map((item, index) => (
-                            <div key={index} className="industry-card bg-white border border-[#e0e0e0] rounded-lg p-6 hover:border-[#056CB7] hover:shadow-lg transition-all duration-300 group" data-aos="fade-up">
+                            <Link href={`/industries/${item.slug}`} key={index} className="industry-card bg-white border border-[#e0e0e0] rounded-lg p-6 hover:border-[#056CB7] hover:shadow-lg transition-all duration-300 group block" data-aos="fade-up">
                                 <div className="icon w-12 h-12 bg-[#056CB7]/10 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-[#056CB7]/20 transition-all">
                                     {item.icon}
                                 </div>
                                 <h3 className="text-black text-[18px] md:text-[20px] font-semibold mb-3">{item.title}</h3>
                                 <p className="text-[#666] text-[14px] md:text-[15px] leading-[24px]">{item.desc}</p>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

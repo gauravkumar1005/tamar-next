@@ -18,24 +18,24 @@ export default function Footer() {
                     <div className="footer-col w-full md:w-1/4">
                         <h3 className="text-[#eee] text-[16px] font-medium border-b border-white/10 md:border-none pb-2 md:pb-0">Industries</h3>
                         <ul className="grid grid-cols-2 md:block">
-                            <li><Link href="/finance" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Finance</Link></li>
-                            <li><Link href="/healthcare" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Healthcare</Link></li>
-                            <li><Link href="/retail" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Retail</Link></li>
-                            <li><Link href="/manufacturing" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Manufacturing</Link></li>
-                            <li><Link href="/telecommunication" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Telecommunications</Link></li>
-                            <li><Link href="/education" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Education</Link></li>
-                            <li><Link href="/government" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Government</Link></li>
+                            <li><Link href="/industries/finance" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Finance</Link></li>
+                            <li><Link href="/industries/healthcare" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Healthcare</Link></li>
+                            <li><Link href="/industries/retail" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Retail</Link></li>
+                            <li><Link href="/industries/manufacturing" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Manufacturing</Link></li>
+                            <li><Link href="/industries/telecommunication" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Telecommunications</Link></li>
+                            <li><Link href="/industries/education" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Education</Link></li>
+                            <li><Link href="/industries/government" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Government</Link></li>
                         </ul>
                     </div>
                     <div className="footer-col w-full md:w-1/4">
                         <h3 className="text-[#eee] text-[16px] font-medium border-b border-white/10 md:border-none pb-2 md:pb-0">Services</h3>
                         <ul className="grid grid-cols-2 md:block">
-                            <li><Link href="/software-development" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Software Development</Link></li>
-                            <li><Link href="/it-consulting" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">IT Consulting</Link></li>
-                            <li><Link href="/ai-services" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">AI Services</Link></li>
-                            <li><Link href="/managed-it-services" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Managed IT Services</Link></li>
-                            <li><Link href="/testing-and-qa" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Testing and QA Services</Link></li>
-                            <li><Link href="/rpa-development" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">RPA Development</Link></li>
+                            <li><Link href="/services/software-development" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Software Development</Link></li>
+                            <li><Link href="/services/it-consulting" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">IT Consulting</Link></li>
+                            <li><Link href="/services/ai-services" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">AI Services</Link></li>
+                            <li><Link href="/services/managed-it-services" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Managed IT Services</Link></li>
+                            <li><Link href="/services/testing-and-qa" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">Testing and QA Services</Link></li>
+                            <li><Link href="/services/rpa-development" className="text-[#eee] text-[14px] md:text-[16px] leading-[30px] font-light mt-[10px] md:mt-[20px] inline-block hover:text-white transition-colors">RPA Development</Link></li>
                         </ul>
                     </div>
                     <div className="footer-col address w-full md:w-1/4">

@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tamar Software - Next.js Website
 
-## Getting Started
+This is a modern, responsive website for Tamar Software built with **Next.js 14+** (App Router) and styled with **Tailwind CSS**. It serves as a comprehensive corporate portal showcasing capabilities, case studies, industries served, and company information.
 
-First, run the development server:
+## 🚀 Getting Started
+
+Follow these instructions to set up and run the project on your local machine.
+
+### Prerequisites
+
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (Version 18.17.0 or later recommended)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+
+### 📥 Installation 
+
+1. **Navigate to the project directory:**
+   Open your terminal and make sure you are in the `tamar-next` folder.
+   ```bash
+   cd tamar-next
+   ```
+
+2. **Install dependencies:**
+   Run the following command to install all necessary packages listed in `package.json`.
+   ```bash
+   npm install
+   ```
+
+### 🏃 Running the Development Server
+
+To start the project locally in development mode:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The page hot-reloads as you edit files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🏗️ Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create an optimized production build:
 
-## Learn More
+```bash
+npm run build
+```
+This generates a `.next` folder with the production build.
 
-To learn more about Next.js, take a look at the following resources:
+To start the production server after building:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📤 Static Export (Optional)
 
-## Deploy on Vercel
+If `output: 'export'` is enabled in `next.config.ts`, `npm run build` will generate a static `out` folder that can be deployed to static hosting services (like GitHub Pages, Netlify, or AWS S3).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework**: [Next.js](https://nextjs.org/) (React Framework)
+- **Language**: TypeScript
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [AOS](https://michalsnik.github.io/aos/) (Animate On Scroll) & Custom CSS Keyframes
+- **Carousels**: [React Slick](https://react-slick.neostack.com/)
+- **Icons**: SVG Icons & Font Awesome (if applicable)
+
+## 📂 Project Structure
+
+- **`src/app`**: Contains the App Router pages (`page.tsx`) and layout.
+- **`src/components`**: Reusable UI components like Header, Footer, etc.
+- **`public`**: Static assets like images, fonts, and icons.
+- **`src/app/globals.css`**: Global styles and Tailwind imports.
+
+## ✨ Key Features
+
+- **Responsive Design**: Fully responsive layout for Mobile, Tablet, and Desktop.
+- **Dynamic Animations**: Custom entrance and background animations.
+- **Modular Components**: Reusable React components for easier maintenance.
+- **Fast Performance**: Optimized with Next.js static generation features.
+
+---
+© 2024 Tamar Software. All rights reserved.

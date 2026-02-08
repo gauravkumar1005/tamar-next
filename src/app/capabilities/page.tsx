@@ -39,15 +39,15 @@ export default function Capabilities() {
                 <div className="container my-10">
                     <div className="capabilities-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
-                            { title: "Software Development", desc: "Custom software solutions tailored to meet the unique needs of your business, ensuring efficiency and scalability.", icon: "💻" },
-                            { title: "Mobile Development", desc: "Create powerful and user friendly mobile applications for iOS and Android platforms.", icon: "📱" },
-                            { title: "Web Development", desc: "Build responsive, modern, and high-performance websites tailored to your business needs.", icon: "🌐" },
-                            { title: "AI Services", desc: "Harness the power of data and artificial intelligence to drive innovation and gain a competitive edge.", icon: "🤖" },
-                            { title: "IT Consulting", desc: "Expert advice and strategic planning to help you navigate the complexities of the IT landscape and achieve your business goals.", icon: "💡" },
-                            { title: "Cybersecurity Services", desc: "Expert advice and strategic planning to help you navigate the complexities of Cybersecurity and achieve your Security goals.", icon: "🔒" },
-                            { title: "Managed IT Services", desc: "Comprehensive IT management and support services to ensure your systems run smoothly and efficiently.", icon: "⚙️" },
-                            { title: "Testing and QA Services", desc: "Rigorous testing and quality assurance processes to deliver reliable and high-performing software.", icon: "✓" },
-                            { title: "RPA Development", desc: "Streamline operations and enhance productivity with our Robotic Process Automation solutions.", icon: "🤖" },
+                            { title: "Software Development", desc: "Custom software solutions tailored to meet the unique needs of your business, ensuring efficiency and scalability.", icon: "💻", slug: "software-development" },
+                            { title: "Mobile Development", desc: "Create powerful and user friendly mobile applications for iOS and Android platforms.", icon: "📱", slug: "mobile-app-development" },
+                            { title: "Web Development", desc: "Build responsive, modern, and high-performance websites tailored to your business needs.", icon: "🌐", slug: "web-development" },
+                            { title: "AI Services", desc: "Harness the power of data and artificial intelligence to drive innovation and gain a competitive edge.", icon: "🤖", slug: "ai-services" },
+                            { title: "IT Consulting", desc: "Expert advice and strategic planning to help you navigate the complexities of the IT landscape and achieve your business goals.", icon: "💡", slug: "it-consulting" },
+                            { title: "Cybersecurity Services", desc: "Expert advice and strategic planning to help you navigate the complexities of Cybersecurity and achieve your Security goals.", icon: "🔒", slug: "cybersecurity-services" },
+                            { title: "Managed IT Services", desc: "Comprehensive IT management and support services to ensure your systems run smoothly and efficiently.", icon: "⚙️", slug: "managed-it-services" },
+                            { title: "Testing and QA Services", desc: "Rigorous testing and quality assurance processes to deliver reliable and high-performing software.", icon: "✓", slug: "testing-and-qa-services" },
+                            { title: "RPA Development", desc: "Streamline operations and enhance productivity with our Robotic Process Automation solutions.", icon: "🤖", slug: "rpa-development" },
                         ].map((item, index) => (
                             <div key={index} className="capability-card bg-white border border-[#e0e0e0] rounded-lg p-6 hover:border-[#9428BA] hover:shadow-lg transition-all duration-300 group" data-aos="fade-up">
                                 <div className="icon w-12 h-12 bg-[#9428BA]/10 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-[#9428BA]/20 transition-all">
@@ -55,6 +55,12 @@ export default function Capabilities() {
                                 </div>
                                 <h3 className="text-black text-[18px] md:text-[20px] font-semibold mb-3">{item.title}</h3>
                                 <p className="text-[#666] text-[14px] md:text-[15px] leading-[24px] mb-4">{item.desc}</p>
+                                <Link
+                                    href={item.slug ? `/services/${item.slug}` : "/capabilities"}
+                                    className="text-[#9428BA] text-[15px] font-medium hover:underline transition-all"
+                                >
+                                    Read More
+                                </Link>
                             </div>
                         ))}
                     </div>

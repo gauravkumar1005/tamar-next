@@ -154,68 +154,90 @@ export default function Home() {
               We have served many industries including Finance, Healthcare, Retail, Telecommunication, Education, and Manufacturing across 10+ countries worldwide.
             </p>
           </div>
-          <div className="capabilities-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+          <div className="capabilities-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up">
             {[
-              { title: "Software Development", desc: "Custom software solutions tailored to meet the unique needs of your business, ensuring efficiency and scalability.", icon: "💻" },
-              { title: "Mobile Development", desc: "Create powerful and user friendly mobile applications for iOS and Android platforms.", icon: "📱" },
-              { title: "Web Development", desc: "Build responsive, modern, and high-performance websites tailored to your business needs.", icon: "🌐" },
-              { title: "AI Services", desc: "Harness the power of data and artificial intelligence to drive innovation and gain a competitive edge.", icon: "🤖" },
-              { title: "IT Consulting", desc: "Expert advice and strategic planning to help you navigate the complexities of the IT landscape and achieve your business goals.", icon: "💡" },
-              { title: "Cybersecurity Services", desc: "Expert advice and strategic planning to help you navigate the complexities of Cybersecurity and achieve your Security goals.", icon: "🔒" },
-              { title: "Managed IT Services", desc: "Comprehensive IT management and support services to ensure your systems run smoothly and efficiently.", icon: "⚙️" },
-              { title: "Testing and QA Services", desc: "Rigorous testing and quality assurance processes to deliver reliable and high-performing software.", icon: "✓" },
-              { title: "RPA Development", desc: "Streamline operations and enhance productivity with our Robotic Process Automation solutions.", icon: "🤖" },
+              { title: "Software Development", route: "/services/software-development", desc: "Custom software solutions tailored to meet the unique needs of your business, ensuring efficiency and scalability.", icon: "💻" },
+              { title: "Mobile Development", route: "/services/mobile-app-development", desc: "Create powerful and user friendly mobile applications for iOS and Android platforms.", icon: "📱" },
+              { title: "Web Development", route: "/services/web-development", desc: "Build responsive, modern, and high-performance websites tailored to your business needs.", icon: "🌐" },
+              { title: "AI Services", route: "/services/ai-services", desc: "Harness the power of data and artificial intelligence to drive innovation and gain a competitive edge.", icon: "🤖" },
+              { title: "IT Consulting", route: "/services/it-consulting", desc: "Expert advice and strategic planning to help you navigate the complexities of the IT landscape and achieve your business goals.", icon: "💡" },
+              { title: "Cybersecurity Services", route: "/services/cybersecurity-services", desc: "Expert advice and strategic planning to help you navigate the complexities of Cybersecurity and achieve your Security goals.", icon: "🔒" },
+              { title: "Managed IT Services", route: "/services/managed-it-services", desc: "Comprehensive IT management and support services to ensure your systems run smoothly and efficiently.", icon: "⚙️" },
+              { title: "Testing and QA Services", route: "/services/testing-and-qa-services", desc: "Rigorous testing and quality assurance processes to deliver reliable and high-performing software.", icon: "✓" },
+              { title: "RPA Development", route: "/services/rpa-development", desc: "Streamline operations and enhance productivity with our Robotic Process Automation solutions.", icon: "🤖" },
             ].map((item, index) => (
-              <div key={index} className="capability-card bg-white border border-[#e0e0e0] rounded-lg p-6 hover:border-[#9428BA] hover:shadow-lg transition-all duration-300 group">
-                <div className="icon w-12 h-12 bg-[#9428BA]/10 rounded-lg flex items-center justify-center mb-4 text-2xl group-hover:bg-[#9428BA]/20 transition-all">
+              <Link href={item.route} key={index} className="capability-card group relative bg-white border border-slate-100 rounded-2xl p-8 hover:border-[#9428BA] hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col items-start" data-aos="fade-up" data-aos-delay={index * 50}>
+                {/* Hover Gradient Line */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#9428BA] to-[#E31E24] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+
+                <div className="icon w-16 h-16 bg-[#9428BA]/5 rounded-2xl flex items-center justify-center mb-6 text-3xl text-[#9428BA] group-hover:bg-[#9428BA] group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:scale-110">
                   {item.icon}
                 </div>
-                <h3 className="text-black text-[18px] md:text-[20px] font-semibold mb-3">{item.title}</h3>
-                <p className="text-[#666] text-[14px] md:text-[15px] leading-[24px] mb-4">{item.desc}</p>
-                <button className="text-[#9428BA] text-[14px] font-medium hover:underline">Read More</button>
-              </div>
+
+                <h3 className="text-slate-900 text-[20px] md:text-[22px] font-bold mb-3 group-hover:text-[#9428BA] transition-colors">{item.title}</h3>
+                <p className="text-slate-500 text-[15px] leading-relaxed mb-6 line-clamp-3">{item.desc}</p>
+
+                <div className="mt-auto flex items-center text-[#9428BA] font-semibold text-sm uppercase tracking-wider group-hover:gap-2 transition-all">
+                  <span>Explore Service</span>
+                  <span className="text-lg leading-none ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Promotional Banner Section */}
-      <section className="promotional-banner py-[80px] bg-gradient-to-r from-[#7A1538] to-[#4A0E2A] relative overflow-hidden">
-        {/* Decorative Lines */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#FF4D4D] rounded-full blur-[80px] translate-y-1/2 -translate-x-1/3"></div>
-          <div className="absolute inset-0 bg-[url('/images/grid.png')] opacity-10"></div>
+      <section className="promotional-banner pt-[80px] bg-[#530722] relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 z-0">
+          {/* Diagonal Lines Pattern on Right */}
+          <div className="absolute top-0 right-[-100px] w-full h-full opacity-30 pointer-events-none">
+            <div className="absolute top-[-20%] right-0 w-full h-[150%] bg-[repeating-linear-gradient(45deg,transparent,transparent_25px,rgba(255,77,77,0.5)_25px,rgba(255,77,77,0.5)_27px)]"></div>
+          </div>
+          {/* Subtle Glows */}
+          <div className="absolute top-1/2 right-[10%] w-[400px] h-[400px] bg-[#FF4D4D] rounded-full blur-[120px] opacity-20 transform -translate-y-1/2"></div>
         </div>
 
-        <div className="container relative z-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-0">
+        <div className="container relative z-10 flex flex-col md:flex-row items-center md:items-end !justify-start min-h-[500px] md:min-h-[600px]">
           {/* Left Content */}
-          <div className="content w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
-            <h4 className="text-[#FF4D4D] font-bold tracking-[4px] uppercase text-[14px] md:text-[16px] mb-2">The Big Thinkers</h4>
-            <h2 className="text-white text-[32px] md:text-[48px] font-bold leading-tight mb-6">
-              Driving Digital <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D4D] to-orange-400">Innovation</span> Globally
+          <div className="content w-full md:w-[60%] lg:w-[55%] text-center md:text-left md:self-center py-20 z-20" data-aos="fade-right">
+            <h4 className="flex items-center justify-center md:justify-start gap-3 mb-6 relative">
+              <span className="text-white font-serif italic text-xl md:text-2xl uppercase tracking-[0.2em] opacity-80 leading-none">The</span>
+              <div className="relative inline-block">
+                <span className="text-[#E31E24] font-serif italic text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none relative z-10">Big</span>
+                {/* Red decorative line cutting through BIG */}
+                <div className="absolute top-[45%] -left-[10%] w-[120%] h-[2px] bg-[#E31E24] transform -rotate-[5deg] z-0"></div>
+              </div>
+              <span className="text-white font-serif italic text-xl md:text-2xl uppercase tracking-[0.2em] opacity-80 leading-none">Thinkers</span>
+            </h4>
+
+            <h2 className="text-white text-[32px] md:text-[56px] font-bold leading-[1.1] mb-8">
+              Driving Digital <br /> Innovation Globally
             </h2>
-            <p className="text-gray-300 text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[500px] mx-auto md:mx-0">
+            <p className="text-gray-300 text-[16px] md:text-[18px] leading-relaxed mb-8 max-w-[550px] mx-auto md:mx-0">
               "We don't just build software; we engineer growth. Our mission is to empower businesses with scalable, future-ready technology that creates lasting impact."
             </p>
 
-            <div className="person-info flex flex-col md:flex-row items-center gap-4 mb-8 justify-center md:justify-start">
-              <div className="bar w-[4px] h-[40px] bg-[#FF4D4D] rounded-full hidden md:block"></div>
+            <div className="person-info mb-10 mt-12 flex flex-col md:flex-row items-center md:items-start gap-4">
+              {/* Horizontal line like in reference */}
+              <div className="w-[80px] h-[1px] bg-white/40 mt-4 hidden md:block"></div>
               <div className="text-center md:text-left">
-                <h3 className="text-white text-[20px] font-bold">Pradeep Kumar Tamar</h3>
-                <p className="text-gray-400 text-[14px]">Founder & CEO, Tamar Software</p>
+                <h3 className="text-white text-[24px] md:text-[28px] font-bold tracking-tight mb-1">Pradeep Kumar Tamar</h3>
+                <p className="text-[#FF4D4D] text-[15px] font-medium uppercase tracking-wider opacity-90">Founder & CEO, Tamar Software</p>
               </div>
             </div>
 
-            <Link href="/about" className="btn bg-white text-[#7A1538] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors inline-block shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              Discover Our Vision
+            <Link href="/about" className="group flex items-center justify-center md:justify-start gap-3 bg-[#E31E24] text-white px-10 py-5 rounded-[4px] font-bold transition-all hover:bg-[#c1191f] shadow-lg w-fit mx-auto md:mx-0 uppercase tracking-widest text-[14px]">
+              WATCH NOW
+              <span className="text-[12px] transition-transform group-hover:translate-x-1">▶</span>
             </Link>
           </div>
 
           {/* Right Image */}
-          <div className="image w-full md:w-1/2 flex justify-center md:justify-end relative" data-aos="fade-left">
-            <div className="relative z-10">
-              <img src="/images/pradeep_without.png" alt="Pradeep Kumar Tamar" className="max-w-full md:max-w-[900px] object-contain drop-shadow-2xl relative z-10" />
+          <div className="image w-full md:w-[40%] lg:w-[45%] flex justify-end relative items-end self-end z-10 h-full" data-aos="fade-left">
+            <div className="relative">
+              <img src="/images/pradeep_without.png" alt="Pradeep Kumar Tamar" className="w-auto h-[450px] md:h-[650px] lg:h-[750px] object-contain drop-shadow-2xl brightness-110 pointer-events-none" />
               {/* Decorative Elements around image */}
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/10 rounded-full animate-spin-slow"></div>
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] border border-white/5 rounded-full animate-spin-reverse-slow"></div>
