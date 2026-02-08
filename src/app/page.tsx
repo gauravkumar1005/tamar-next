@@ -279,20 +279,52 @@ export default function Home() {
       </section>
 
       {/* Industries Section */}
-      <section className="industries-main bg-[#E1E9EB] py-[80px] md:py-[130px] overflow-hidden">
-        <div className="container my-10">
-          <h2 className="section-title text-[28px] md:text-[35px] font-medium text-black mb-10 text-center md:text-left">Industries</h2>
-          <div className="industries bg-white rounded-[5px] p-10 lg:p-[75px_85px] mt-10 md:mt-[145px] relative w-full lg:w-[calc(100%_-_180px)] mx-auto before:content-[''] before:absolute before:top-[-105px] before:left-[-140px] before:w-full before:h-full before:bg-[url('/images/industries-shap.png')] before:bg-no-repeat before:z-0 after:content-[''] after:absolute after:inset-0 after:bg-white after:rounded-[12px] after:z-[-1]" data-aos="fade-left">
-            <div className="industries-list-col flex flex-col lg:flex-row w-full relative z-20">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 w-full lg:w-[65%] gap-2 lg:gap-x-12 relative z-10">
-                {["Finance", "Healthcare", "Infrastructure & Construction", "Automobile", "Hospitality", "Media and Entertainment", "Retail", "Telecommunication", "Education", "Government"].map((industry, index) => (
-                  <li key={index} className="text-[#444] text-[16px] py-[10px] md:py-[17px] relative pl-[30px] before:content-[''] before:absolute before:left-[-20px] before:top-1/2 before:-translate-y-1/2 before:w-[12px] before:h-[12px] before:bg-[url('/images/right-arrow.svg')] before:bg-contain before:bg-no-repeat font-normal">{industry}</li>
-                ))}
-              </ul>
-              <div className="img lg:absolute lg:top-[-165px] lg:right-[-150px] mt-10 lg:mt-0 flex rounded-[10px] overflow-hidden max-w-full lg:max-w-none after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-[rgba(142,31,181,0.4)] after:to-[rgba(62,14,79,0.4)]">
-                <img src="/images/industries-img.png" alt="" className="transition-transform duration-500 hover:scale-110 w-full h-auto" />
-              </div>
+      <section className="industries-main bg-[#E1E9EB] py-[80px] md:py-[130px] overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="container my-10 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div data-aos="fade-right">
+              <h2 className="section-title text-[28px] md:text-[40px] font-bold text-black mb-4">Industries We Serve</h2>
+              <p className="text-slate-600 text-lg max-w-xl">
+                Delivering specialized, high-impact digital solutions across diverse sectors.
+              </p>
             </div>
+            <Link href="/industries" className="hidden md:flex items-center gap-2 text-[#056CB7] font-semibold hover:gap-4 transition-all" data-aos="fade-left">
+              View All Industries <span className="text-xl">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Finance", icon: "💰", route: "/industries/finance", desc: "Secure banking & fintech solutions" },
+              { title: "Healthcare", icon: "🏥", route: "/industries/healthcare", desc: "HIPAA-compliant patient systems" },
+              { title: "Retail", icon: "🛒", route: "/industries/retail", desc: "Omnichannel e-commerce platforms" },
+              { title: "Manufacturing", icon: "🏭", route: "/industries/manufacturing", desc: "Industry 4.0 & IoT automation" },
+              { title: "Telecommunication", icon: "📡", route: "/industries/telecommunication", desc: "Network scaling & billing systems" },
+              { title: "Education", icon: "🎓", route: "/industries/education", desc: "LMS & remote learning tools" },
+              { title: "Government", icon: "🏛️", route: "/industries/government", desc: "Secure e-governance portals" },
+            ].map((industry, index) => (
+              <Link href={industry.route} key={index} className="industry-card bg-white rounded-xl p-6 shadow-sm border border-transparent hover:border-[#056CB7] hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="w-16 h-16 rounded-full bg-[#E1E9EB] flex items-center justify-center text-3xl mb-4 group-hover:bg-[#056CB7] group-hover:text-white transition-colors duration-300">
+                  {industry.icon}
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">{industry.title}</h3>
+                <p className="text-slate-500 text-sm mb-4">{industry.desc}</p>
+                <span className="text-[#056CB7] text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">Explore industry →</span>
+              </Link>
+            ))}
+
+            {/* 'View All' Card for mobile/grid balance */}
+            <Link href="/industries" className="industry-card bg-[#056CB7] rounded-xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group flex flex-col items-center justify-center text-center min-h-[200px]" data-aos="fade-up" data-aos-delay="700">
+              <h3 className="text-2xl font-bold text-white mb-2">Explore All <br />Industries</h3>
+              <span className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white text-xl mt-4 group-hover:scale-110 transition-transform">→</span>
+            </Link>
+          </div>
+
+          <div className="mt-8 text-center md:hidden">
+            <Link href="/industries" className="btn inline-flex justify-center">
+              View All Industries
+            </Link>
           </div>
         </div>
       </section>
