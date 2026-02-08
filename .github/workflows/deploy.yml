@@ -32,7 +32,7 @@ jobs:
           script: |
             cd /home/ec2-user/tamar-next
             git pull origin main
-            rm -rf .next out
             npm install
             NEXT_DISABLE_TURBOPACK=1 npm run build
-            sudo systemctl restart nginx
+            pm2 restart tamar-next --update-env || pm2 start npm --name "tamar-next" -- run start
+            pm2 save
