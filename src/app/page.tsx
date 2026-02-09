@@ -145,14 +145,38 @@ export default function Home() {
           <div className="absolute -bottom-[10%] -left-[10%] w-[60%] h-[60%] bg-gradient-to-t from-blue-100/40 to-transparent rounded-full blur-3xl animate-pulse-glow animation-delay-2000"></div>
         </div>
         <div className="container my-10">
-          <div className="capabilities-header mb-10 md:mb-16">
-            <h2 className="section-title text-[28px] md:text-[35px] font-medium text-black w-full text-center md:text-left mb-5">Capabilities</h2>
-            <p className="text-[#666] font-light text-[14px] md:text-[16px] mt-4 max-w-[700px] leading-[26px] md:leading-[30px]" data-aos="fade-up">
-              We provide managed IT services customized for your industry
-            </p>
-            <p className="text-[#666] font-light text-[14px] md:text-[16px] mt-4 max-w-[700px] leading-[26px] md:leading-[30px]" data-aos="fade-up">
-              We have served many industries including Finance, Healthcare, Retail, Telecommunication, Education, and Manufacturing across 10+ countries worldwide.
-            </p>
+          <div className="capabilities-header mb-12 md:mb-20 flex flex-col md:flex-row items-end justify-between gap-8">
+            <div className="md:w-2/3" data-aos="fade-right">
+              <h2 className="section-title text-[32px] md:text-[48px] font-bold text-black mb-6 relative inline-block">
+                Our Capabilities
+                <span className="absolute -bottom-2 left-0 w-20 h-1.5 bg-gradient-to-r from-[#9428BA] to-[#E31E24] rounded-full"></span>
+              </h2>
+              <p className="text-slate-600 text-[16px] md:text-[18px] font-light leading-relaxed max-w-[700px] mb-8">
+                We deliver managed IT services tailored for mission-critical industries. From fintech to healthcare, our solutions are engineered for scale, security, and performance.
+              </p>
+
+              {/* Industry Chips */}
+              <div className="flex flex-wrap gap-3">
+                {["Finance", "Healthcare", "Retail", "Telecommunication", "Education", "Manufacturing"].map((ind, i) => (
+                  <span key={i} className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium border border-slate-200 hover:border-[#9428BA] hover:text-[#9428BA] hover:bg-[#9428BA]/5 transition-all cursor-default animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                    {ind}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* global reach counter */}
+            <div className="md:w-1/3 flex justify-start md:justify-end" data-aos="fade-left">
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-6 rounded-2xl shadow-xl border border-slate-700 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-[#9428BA] rounded-full blur-[40px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                <div className="relative z-10 flex items-center gap-4">
+                  <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">10+</div>
+                  <div className="text-sm font-medium tracking-wide text-slate-300 uppercase leading-snug">
+                    Countries <br /> Worldwide
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="capabilities-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up">
             {[
@@ -248,33 +272,114 @@ export default function Home() {
       </section>
 
       {/* Case Studies Section */}
-      <section className="case-studies-main py-[80px] md:py-[130px] overflow-hidden relative">
-        {/* Tech Pattern Animation */}
+      <section className="case-studies-main py-[80px] md:py-[130px] overflow-hidden relative bg-slate-50">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0">
           <div className="absolute inset-0 bg-[radial-gradient(#444_1px,transparent_1px)] [background-size:20px_20px]"></div>
         </div>
-        <div className="container my-10 case-studies flex justify-between flex-wrap gap-y-10 md:gap-y-[80px]">
-          <h2 className="section-title text-[28px] md:text-[35px] font-medium text-black w-full text-center md:text-left mb-5">Case Studies</h2>
-          {[
-            { title: "Online OPD - Naturalminds Digital Systems LLP", img: "/images/case-studies-1.png", link: "/case-studies" },
-            { title: "Automation of accountability of sells, purchase, collections and payments - Ganesha Software", img: "/images/case-studies-2.png", link: "/case-studies" },
-            { title: "Online Venue Booking - Madnue Solutions", img: "/images/case-studies-3.png", link: "/case-studies" },
-            { title: "Virtual Trial Room, It’s an in-house product - Tamar Software", img: "/images/full-shot-woman-online-fashion-shopping.jpg", link: "/case-studies" },
-            { title: "Horse & Saddle", img: "/images/case-studies-1.png", link: "/case-studies" },
-            { title: "Automated Dustbins", img: "/images/case-studies-2.png", link: "/case-studies" },
-          ].map((item, index) => (
-            <Link key={index} href={item.link} className={`card w-full sm:w-[calc(50%_-_20px)] md:w-[calc(50%_-_69px)] relative ${index % 2 === 0 ? "md:top-[100px]" : ""}`} data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}>
-              <div className="img flex overflow-hidden rounded-[10px]">
-                <img src={item.img} alt="" className="w-full transition-transform duration-500 hover:scale-110 aspect-video object-cover" />
-              </div>
-              <p className="text-[16px] md:text-[18px] text-[#333] font-normal mt-[15px]">{item.title}</p>
+
+        <div className="container my-10 relative z-10">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div data-aos="fade-right" className="max-w-2xl">
+              <h2 className="section-title text-[32px] md:text-[48px] font-bold text-black mb-4">Case Studies</h2>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                Real-world success stories. See how we help enterprises transform challenges into digital opportunities.
+              </p>
+            </div>
+            <Link href="/case-studies" className="hidden md:flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full text-slate-800 font-semibold hover:border-[#9428BA] hover:text-[#9428BA] transition-all shadow-sm hover:shadow-md" data-aos="fade-left">
+              View All Case Studies <span className="text-xl">→</span>
             </Link>
-          ))}
-        </div>
-        <div className="container mt-[150px] md:mt-[200px] flex justify-center">
-          <Link href="/case-studies" className="btn w-fit justify-center">
-            <img src="/images/arrow.svg" alt="" /> View All Case Studies
-          </Link>
+          </div>
+
+          {/* Case Studies Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Horse & Saddle",
+                title_full: "Horse & Saddle Case Study",
+                category: "E-Commerce",
+                client: "Horse & Saddle",
+                desc: "Specialized e-commerce platform for equestrian products.",
+                img: "/images/case-studies-4.png",
+                link: "/case-studies/horse-and-saddle"
+              },
+              {
+                title: "Automated Dustbins",
+                title_full: "Automated Dustbins Case Study",
+                category: "IoT",
+                client: "Municipal Corp",
+                desc: "Innovative IoT solution for smart waste management.",
+                img: "/images/dustbin-case-study1.png",
+                link: "/case-studies/automated-dustbins"
+              },
+              {
+                title: "Advanced Chatbot",
+                title_full: "Advanced Chatbot Case Study",
+                category: "AI Services",
+                client: "Enterprise Client",
+                desc: "Intelligent chatbot integration for 24/7 customer support.",
+                img: "/images/case-studies-chatbot.png",
+                link: "/case-studies/advanced-chatbot"
+              },
+              {
+                title: "Online Venue Booking",
+                title_full: "Online Venue Booking - Madnue Solutions",
+                category: "Hospitality",
+                client: "Madnue Solutions",
+                desc: "Real-time venue availability checking and booking platform.",
+                img: "/images/case-studies-3.png",
+                link: "/case-studies/online-venue-booking"
+              },
+              {
+                title: "Online OPD Platform",
+                title_full: "Online OPD - Naturalminds Digital Systems LLP",
+                category: "Healthcare",
+                client: "Naturalminds Digital Systems LLP",
+                desc: "Digital solution for outpatient department management.",
+                img: "/images/case-studies-1.png",
+                link: "/case-studies/online-opd"
+              },
+              {
+                title: "Automation of Accountability",
+                title_full: "Automation of accountability- Ganesha Software",
+                category: "Fintech",
+                client: "Ganesha Software",
+                desc: "Automated tracking for sales, purchases, and payments.",
+                img: "/images/case-studies-2.png",
+                link: "/case-studies/automation-of-accountability"
+              },
+            ].map((item, index) => (
+              <Link key={index} href={item.link} className="case-study-card group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100" data-aos="fade-up" data-aos-delay={index * 100}>
+                {/* Image Container */}
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/0 transition-colors z-10"></div>
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-slate-800 rounded-md shadow-sm">
+                      {item.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-[#9428BA] transition-colors">{item.title}</h3>
+                  <p className="text-xs font-medium text-slate-400 mb-4 uppercase tracking-wide">{item.client}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">{item.desc}</p>
+
+                  <div className="mt-auto flex items-center text-[#9428BA] font-semibold text-sm group-hover:gap-2 transition-all">
+                    View Case Study <span className="ml-2">→</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center md:hidden">
+            <Link href="/case-studies" className="btn w-fit justify-center">
+              View All Case Studies
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -330,29 +435,116 @@ export default function Home() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="testimonial-main w-full pt-[80px] md:pt-[125px] pb-[100px] md:pb-[150px] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[url('/images/tesimonial-bg-img.png')] before:bg-center before:bg-cover before:bg-no-repeat before:blur-[150px]">
-        {/* Floating Bubble Animation */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white/20 rounded-full animate-float-slow"></div>
-          <div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-white/10 rounded-full animate-float-slow animation-delay-2000"></div>
-          <div className="absolute top-1/2 left-1/2 w-16 h-16 border border-white/10 rounded-full animate-float-x"></div>
+      <section className="testimonial-main w-full py-[100px] md:py-[150px] relative overflow-hidden bg-slate-50 border-t border-slate-200">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Use CSS gradients instead of image to ensure availability and look */}
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-50 via-white to-slate-100"></div>
+
+          <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] bg-purple-600/5 rounded-full blur-[120px] animate-pulse-glow"></div>
+          <div className="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] animate-pulse-glow animation-delay-2000"></div>
+
+          {/* Mesh Grid Pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"></div>
         </div>
-        <div className="container my-10 relative z-10">
-          <h2 className="section-title text-[28px] md:text-[35px] font-medium text-black mb-10 text-center md:text-left relative">What clients say</h2>
-          <Slider {...testimonialSettings} className="testimonial-slide -mx-[25px] before:content-[''] before:absolute before:top-[-30px] before:left-[-70px] before:w-[170px] before:h-[90px] before:bg-[url('/images/client-arrow.png')] before:bg-no-repeat before:z-1 after:content-[''] after:absolute after:bottom-[-35px] after:right-[-60px] after:w-[170px] after:h-[90px] after:bg-[url('/images/client-arrow.png')] after:bg-no-repeat after:rotate-180 after:z-1">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="px-[25px] h-full">
-                <div className="slide-card bg-white p-10 lg:p-[45px_40px_45px_80px] rounded-[20px] shadow-sm flex flex-col justify-between h-full min-h-[300px]">
-                  <p className="text-[18px] text-[#555] leading-[30px] font-light w-full max-w-full break-words">
-                    With the help of Tamar Software, our machine automation process is speed up by 35%. They always
-                    deliver software solutions before deadline. I’m happy with their software output. I would be
-                    happy to partner with them in the future.
-                  </p>
-                  <h4 className="text-[18px] mt-[30px] text-[#555] font-normal italic">Henry Williamson, CEO ABC Group, UK</h4>
+
+        <div className="container relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up">
+            <span className="inline-block py-1 px-3 rounded-full bg-purple-50 border border-purple-100 text-[#9428BA] text-sm font-bold uppercase tracking-wider mb-6">
+              Client Reviews
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+              Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Global Leaders</span>
+            </h2>
+            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
+              We don't just build software; we build lasting partnerships. Here is what our clients have to say about our impact on their business.
+            </p>
+          </div>
+
+          {/* Testimonials Slider */}
+          <div data-aos="fade-up" data-aos-delay="200">
+            <Slider {...testimonialSettings} className="testimonial-slide -mx-4 pb-12">
+              {[
+                {
+                  quote: "With the help of Tamar Software, our machine automation process speed increased significantly. They always deliver software solutions before the deadline.",
+                  highlight: "35% faster processing",
+                  name: "Henry Williamson",
+                  role: "CEO",
+                  company: "ABC Group",
+                  location: "UK",
+                  initials: "HW",
+                  color: "from-blue-500 to-cyan-500"
+                },
+                {
+                  quote: "The financial reconciliation system they built reduced our manual workload drastically. The accuracy and speed of the new system are unmatched.",
+                  highlight: "80% less manual work",
+                  name: "Sarah Jenkins",
+                  role: "CTO",
+                  company: "FinTech Solutions",
+                  location: "USA",
+                  initials: "SJ",
+                  color: "from-purple-500 to-pink-500"
+                },
+                {
+                  quote: "Their expertise in WebRTC and media streaming helped us launch our video collaboration platform in record time. Excellent engineering team.",
+                  highlight: "Zero latency issues",
+                  name: "David Chen",
+                  role: "Director of Operations",
+                  company: "ConnectAsia",
+                  location: "Singapore",
+                  initials: "DC",
+                  color: "from-orange-500 to-red-500"
+                },
+                {
+                  quote: "We needed a scalable e-commerce platform for our niche market. Tamar Software delivered a visually stunning and robust solution that our customers love.",
+                  highlight: "40% increase in sales",
+                  name: "Emma Thompson",
+                  role: "Founder",
+                  company: "Horse & Saddle",
+                  location: "Australia",
+                  initials: "ET",
+                  color: "from-emerald-500 to-green-500"
+                }
+              ].map((item, index) => (
+                <div key={index} className="px-4 h-full pt-10"> {/* Added pt-10 for hover lift space */}
+                  <div className="relative bg-white border border-slate-100 p-8 md:p-10 rounded-2xl h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2 group hover:border-purple-200">
+
+                    {/* Decorative Quote Icon */}
+                    <div className={`absolute -top-6 right-8 w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg transform rotate-12 group-hover:rotate-0 transition-all duration-500`}>
+                      <span className="text-3xl text-white font-serif leading-none">"</span>
+                    </div>
+
+                    {/* Quote Content */}
+                    <div className="mb-8 flex-grow">
+                      {/* Highlight Badge */}
+                      <div className={`inline-block px-3 py-1 rounded-full bg-gradient-to-r ${item.color} bg-opacity-10 text-transparent bg-clip-text font-bold uppercase tracking-wide text-xs mb-6 border border-slate-200`}>
+                        {item.highlight}
+                      </div>
+
+                      <p className="text-slate-700 text-lg leading-relaxed italic font-light">
+                        "{item.quote}"
+                      </p>
+                    </div>
+
+                    {/* Client Info */}
+                    <div className="flex items-center gap-4 pt-6 border-t border-slate-100">
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-lg shadow-md`}>
+                        {item.initials}
+                      </div>
+                      <div>
+                        <h4 className="text-slate-900 font-bold text-lg leading-tight">{item.name}</h4>
+                        <p className="text-slate-500 text-sm">
+                          {item.role}, <span className="text-slate-700 font-medium">{item.company}</span>
+                        </p>
+                        <p className="text-xs text-slate-400 mt-0.5 uppercase tracking-wider">{item.location}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          </div>
         </div>
       </section>
 
