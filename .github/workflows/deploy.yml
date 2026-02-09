@@ -1,39 +1,52 @@
-- name: Deploy to EC2
-  uses: appleboy/ssh-action@v1.0.3
-  with:
-    host: ${{ secrets.EC2_HOST }}
-    username: ${{ secrets.EC2_USER }}
-    key: ${{ secrets.EC2_SSH_KEY }}
-    timeout: 30m
-    command_timeout: 30m
-    script: |
-      set -e
+ name: Deploy to EC2
 
-      echo "➡️ Go to project directory"
-      cd /home/ec2-user/tamar-next
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-      echo "➡️ Pull latest code"
-      git pull origin main
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          timeout: 30m
+          command_timeout: 30m
+          script: |
+            set -e
 
-      echo "➡️ Fresh build"
-      rm -rf out .next node_modules
-      npm ci
-      NEXT_DISABLE_TURBOPACK=1 npm run build
+            echo "➡️ Go to project directory"
+            cd /home/ec2-user/tamar-next
 
-      echo "➡️ Deploy static files (clean sync)"
-      sudo rm -rf /var/www/tamar-next/*
-      sudo rsync -av --delete out/ /var/www/tamar-next/
+            echo "➡️ Pull latest code"
+            git pull origin main
 
-      echo "➡️ Fix permissions"
-      sudo chown -R nginx:nginx /var/www/tamar-next
-      sudo find /var/www/tamar-next -type d -exec chmod 755 {} \;
-      sudo find /var/www/tamar-next -type f -exec chmod 644 {} \;
+            echo "➡️ Fresh build"
+            rm -rf out .next node_modules
+            npm ci
+            NEXT_DISABLE_TURBOPACK=1 npm run build
 
-      echo "➡️ Ensure no old nginx configs exist"
-      sudo rm -f /etc/nginx/conf.d/nextjs.conf
+            echo "➡️ Deploy static files (clean sync)"
+            sudo rm -rf /var/www/tamar-next/*
+            sudo rsync -av --delete out/ /var/www/tamar-next/
 
-      echo "➡️ Test & reload nginx"
-      sudo nginx -t
-      sudo systemctl reload nginx
+            echo "➡️ Fix permissions"
+            sudo chown -R nginx:nginx /var/www/tamar-next
+            sudo find /var/www/tamar-next -type d -exec chmod 755 {} \;
+            sudo find /var/www/tamar-next -type f -exec chmod 644 {} \;
 
-      echo "✅ Deployment completed successfully"
+            echo "➡️ Ensure no old nginx configs exist"
+            sudo rm -f /etc/nginx/conf.d/nextjs.conf
+
+            echo "➡️ Test & reload nginx"
+            sudo nginx -t
+            sudo systemctl reload nginx
+
+            echo "✅ Deployment completed successfully"
