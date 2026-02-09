@@ -1,64 +1,39 @@
-name: Deploy Next.js to EC2
+- name: Deploy to EC2
+  uses: appleboy/ssh-action@v1.0.3
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ${{ secrets.EC2_USER }}
+    key: ${{ secrets.EC2_SSH_KEY }}
+    timeout: 30m
+    command_timeout: 30m
+    script: |
+      set -e
 
-on:
-  push:
-    branches:
-      - main
+      echo "➡️ Go to project directory"
+      cd /home/ec2-user/tamar-next
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+      echo "➡️ Pull latest code"
+      git pull origin main
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      echo "➡️ Fresh build"
+      rm -rf out .next node_modules
+      npm ci
+      NEXT_DISABLE_TURBOPACK=1 npm run build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      echo "➡️ Deploy static files (clean sync)"
+      sudo rm -rf /var/www/tamar-next/*
+      sudo rsync -av --delete out/ /var/www/tamar-next/
 
-      # 🔹 Local build check (optional but safe)
-      - name: Install & Build (CI check)
-        run: |
-          npm ci
-          NEXT_DISABLE_TURBOPACK=1 npm run build
+      echo "➡️ Fix permissions"
+      sudo chown -R nginx:nginx /var/www/tamar-next
+      sudo find /var/www/tamar-next -type d -exec chmod 755 {} \;
+      sudo find /var/www/tamar-next -type f -exec chmod 644 {} \;
 
-      # 🔹 Actual deploy on EC2
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            set -e
+      echo "➡️ Ensure no old nginx configs exist"
+      sudo rm -f /etc/nginx/conf.d/nextjs.conf
 
-            echo "➡️ Go to project directory"
-            cd /home/ec2-user/tamar-next
+      echo "➡️ Test & reload nginx"
+      sudo nginx -t
+      sudo systemctl reload nginx
 
-            echo "➡️ Pull latest code"
-            git pull origin main
-
-            echo "➡️ Fresh build"
-            rm -rf out .next node_modules
-            npm ci
-            NEXT_DISABLE_TURBOPACK=1 npm run build
-
-            echo "➡️ Deploy static files (clean sync)"
-            sudo rm -rf /var/www/tamar-next/*
-            sudo rsync -av --delete out/ /var/www/tamar-next/
-
-            echo "➡️ Fix permissions"
-            sudo chown -R nginx:nginx /var/www/tamar-next
-            sudo find /var/www/tamar-next -type d -exec chmod 755 {} \;
-            sudo find /var/www/tamar-next -type f -exec chmod 644 {} \;
-
-            echo "➡️ Ensure no old nginx configs exist"
-            sudo rm -f /etc/nginx/conf.d/nextjs.conf
-
-            echo "➡️ Test & reload nginx"
-            sudo nginx -t
-            sudo systemctl reload nginx
-
-            echo "✅ Deployment completed successfully"
+      echo "✅ Deployment completed successfully"
