@@ -1,4 +1,4 @@
-name: Deploy Next.js to EC2
+name: Deploy Static Next.js to EC2
 
 on:
   push:
@@ -10,40 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Node is NOT needed on GitHub runner
-      # Build happens on EC2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Build static site
+        run: |
+          npm ci
+          npm run build
+          npm run export
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-
-          # 🔥 Important fixes
-          timeout: 300s
-          command_timeout: 300s
-          request_pty: true
-
           script: |
             set -e
-            cd /home/ec2-user/tamar-next
 
-            echo "➡️ Pull latest code"
-            git pull origin main
+            RELEASE=/var/www/releases/$(date +%Y%m%d%H%M%S)
 
-            echo "➡️ Clean previous build"
-            rm -rf .next
+            sudo mkdir -p $RELEASE
+            sudo rsync -av out/ $RELEASE/
 
-            echo "➡️ Install dependencies"
-            npm install
+            sudo ln -sfn $RELEASE /var/www/tamar-next
+            sudo chown -R nginx:nginx /var/www/releases
 
-            echo "➡️ Build Next.js"
-            NEXT_DISABLE_TURBOPACK=1 npm run build
+            sudo nginx -t
+            sudo systemctl reload nginx
 
-            echo "➡️ Restart Nginx"
-            sudo systemctl restart nginx
-
-            echo "✅ Deployment successful"
+            echo "✅ DEPLOY SUCCESS"
