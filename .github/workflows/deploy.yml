@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
+      # 1️⃣ Checkout
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -21,51 +21,42 @@ jobs:
           node-version: 20
           cache: npm
 
-      # 3️⃣ Install & Build (GitHub runner)
-      - name: Install dependencies & build
+      # 3️⃣ Install, Build & Export (IMPORTANT)
+      - name: Build static site
         run: |
           npm ci
           NEXT_DISABLE_TURBOPACK=1 npm run build
+          npm run export
 
-      # 4️⃣ Deploy on EC2
-      - name: Deploy to EC2 via SSH
+      # 4️⃣ Upload build to EC2
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script_stop: true
-          timeout: 30m
-          command_timeout: 30m
           script: |
             set -e
 
-            echo "➡️ Go to project directory"
-            cd /home/ec2-user/tamar-next
+            RELEASE_DIR=/var/www/releases/$(date +%Y%m%d%H%M%S)
 
-            echo "➡️ Pull latest code"
-            git pull origin main
+            echo "➡️ Create release directory"
+            sudo mkdir -p $RELEASE_DIR
 
-            echo "➡️ Clean & install"
-            rm -rf node_modules .next out
-            npm ci
+            echo "➡️ Upload new static files"
+            sudo rsync -av --delete ./out/ $RELEASE_DIR/
 
-            echo "➡️ Build static site"
-            NEXT_DISABLE_TURBOPACK=1 npm run build
-
-            echo "➡️ Deploy to nginx web root"
-            sudo rsync -av --delete out/ /var/www/tamar-next/
+            echo "➡️ Switch symlink (zero downtime)"
+            sudo ln -sfn $RELEASE_DIR /var/www/tamar-next
 
             echo "➡️ Fix permissions"
-            sudo chown -R nginx:nginx /var/www/tamar-next
-            sudo find /var/www/tamar-next -type d -exec chmod 755 {} \;
-            sudo find /var/www/tamar-next -type f -exec chmod 644 {} \;
+            sudo chown -R nginx:nginx $RELEASE_DIR
+            sudo find $RELEASE_DIR -type d -exec chmod 755 {} \;
+            sudo find $RELEASE_DIR -type f -exec chmod 644 {} \;
 
-            echo "➡️ Ensure no conflicting nginx configs"
-            sudo rm -f /etc/nginx/conf.d/nextjs.conf*
-
-            echo "➡️ Test & reload nginx"
+            echo "➡️ Reload nginx"
             sudo nginx -t
             sudo systemctl reload nginx
 
-            echo "✅ DEPLOYMENT SUCCESSFUL"
+            echo "✅ DEPLOY SUCCESSFUL"
