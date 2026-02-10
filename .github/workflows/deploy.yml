@@ -10,19 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout
       - uses: actions/checkout@v4
 
+      # 2️⃣ Setup Node
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
+      # 3️⃣ Build static site (OUT folder)
       - name: Build static site
         run: |
           npm ci
           npm run build
 
-      - name: Deploy to EC2
+      # 4️⃣ Copy OUT → EC2 (THIS WAS MISSING)
+      - name: Copy static files to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "out/*"
+          target: "/tmp/out"
+
+      # 5️⃣ Activate release on EC2
+      - name: Activate release
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -34,7 +48,7 @@ jobs:
             RELEASE=/var/www/releases/$(date +%Y%m%d%H%M%S)
 
             sudo mkdir -p $RELEASE
-            sudo rsync -av out/ $RELEASE/
+            sudo rsync -av /tmp/out/ $RELEASE/
 
             sudo ln -sfn $RELEASE /var/www/tamar-next
             sudo chown -R nginx:nginx /var/www/releases
