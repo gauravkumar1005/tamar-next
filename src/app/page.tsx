@@ -45,10 +45,6 @@ export default function Home() {
   return (
     <main>
       {/* Banner Section */}
-      <div style={{ background: "black", color: "yellow", padding: "10px" }}>
-        CONTACT PAGE LIVE – 10 FEB
-      </div>
-
       <section className="banner h-auto md:h-[665px] w-full flex overflow-hidden py-10 md:py-0 relative bg-slate-50">
         {/* Background Animation Elements */}
         <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
