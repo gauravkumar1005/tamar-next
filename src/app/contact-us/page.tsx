@@ -69,7 +69,7 @@ export default function ContactUs() {
     return (
         <main className="bg-white min-h-screen">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-slate-50 text-slate-900">
+            <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden bg-slate-50 text-slate-900">
                 {/* Abstract Background */}
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-200/40 rounded-full blur-[120px] mix-blend-multiply animate-pulse-slow"></div>

@@ -48,7 +48,7 @@ export default function AdvancedChatbotCaseStudy() {
     return (
         <main className="bg-white">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-[#0B0F19] text-white">
+            <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden bg-[#0B0F19] text-white">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                 {/* Glow Effects */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen"></div>
