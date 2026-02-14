@@ -70,9 +70,6 @@ export default function ContactUs() {
 
   return (
     <main className="bg-white min-h-screen">
-      <div style={{ background: "black", color: "yellow", padding: "10px" }}>
-        CONTACT PAGE LIVE – 10 FEB
-      </div>
       {/* Hero Section */}
       <section className="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden bg-slate-50 text-slate-900">
         {/* Abstract Background */}
