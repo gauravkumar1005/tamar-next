@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -55,21 +56,40 @@ export default function Home() {
         </div>
         <div className="container banner-content home-banner flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="banner-textwrap w-full md:w-1/2">
-            <div className="banner-text fadeInUp text-center md:text-left">
+            <motion.div
+              className="banner-text text-center md:text-left relative z-10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <h1 className="text-[36px] sm:text-[48px] lg:text-[60px] font-medium text-black leading-tight">
                 Creating high-value AI <br className="hidden md:block" />{" "}
                 software solutions
               </h1>
-              <h4 className="text-[#666] text-[16px] md:text-[20px] font-normal mt-[10px] mb-[30px] md:mb-[42px]">
+              <h4 className="text-xl md:text-2xl font-normal text-slate-500 leading-relaxed mb-10 max-w-lg mx-auto md:mx-0">
                 We focus on your business needs, quality and Innovation
               </h4>
-              <Link
-                className="btn justify-center md:justify-start"
-                href="/contact-us"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
               >
-                <img src="/images/arrow.svg" alt="" /> Let’s Connect
-              </Link>
-            </div>
+                <Link
+                  className="group inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1"
+                  href="/contact-us"
+                >
+                  Let’s Connect
+                  <svg
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
           <div className="banner-img circle-animation relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[355px] md:h-[355px] rounded-full bg-white/50 flex items-center justify-center">
             <div className="circle animate-[circle-rotation_14s_linear_infinite]">
